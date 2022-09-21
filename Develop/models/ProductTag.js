@@ -14,9 +14,9 @@ ProductTag.init(
       autoIncrement: true,
     },
     product_id: {
+      //This needs to be referenced to id ?
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
     },
     tag_id: {
       type: DataTypes.INTEGER,

@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
   // create a new tag
   try {
     const newTag = await Tag.create({
-      tag_name: req.body.title,
+      tag_name: req.body.tag_name,
     });
   } catch (error) {
     res.status(500).json(err);
