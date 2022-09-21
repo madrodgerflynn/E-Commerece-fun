@@ -15,12 +15,14 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+    res.status(200).json(allcategories);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
+//route /api/categories/id value
 router.get("/:id", async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
@@ -75,6 +77,7 @@ router.delete("/:id", async (req, res) => {
         message: "No Category Data found!",
       });
     }
+    res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
   }
