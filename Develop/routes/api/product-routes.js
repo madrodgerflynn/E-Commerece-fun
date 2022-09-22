@@ -24,16 +24,17 @@ router.get("/:id", async (req, res) => {
       include: [
         {
           model: Product,
-          through: Tag,
-          as: "product_tags",
+          through: Category,
+          Tag,
+          // as: "product_tags",
         },
       ],
     });
-    if (productData) {
+    if (!productData) {
       res.status(404).json({ message: "No Product found with this tag!" });
       return;
     }
-
+    console.log(productData);
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
@@ -58,10 +59,10 @@ router.post("/", async (req, res) => {
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.tagIds.length) {
+      if (req.body.tagIds) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
-            product_id: product.id,
+            product_id: req.body.id,
             tag_id,
           };
         });
