@@ -52,11 +52,13 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
+  console.log("here");
   // update a tag's name by its `id` value
   try {
-    const tagtoUpdate = await Tag.findbyPk(req.param.id);
-    tagtoUpdate.update({ tag_name: req.body.tag_id });
-    tagtoUpdate.save();
+    const tagtoUpdate = await Tag.findByPk(req.params.id);
+    console.log(tagtoUpdate);
+    tagtoUpdate.update({ tag_name: req.body.tag_name });
+    // tagtoUpdate.save();
 
     res.status(200).json(tagtoUpdate);
   } catch (err) {
